@@ -331,4 +331,12 @@ class ParserSpecTest extends \PHPUnit_Framework_TestCase
         $parser = new StringParser(new Config(), 'name', 'AB');
         $parser->lengthSmallerThanOrEqualTo(1)->required();
     }
+
+    public function testUrlWithSpecialCharacterInPath()
+    {
+        $url = 'https://www.facebook.com/Nin-Hao-O-Melhor-Curso-de-Chinês-270778194986/';
+        $parser = new StringParser(new Config(), 'url', $url);
+        $result = $parser->url()->required();
+        $this->assertEquals($url, $result);
+    }
 }
